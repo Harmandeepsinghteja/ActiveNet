@@ -23,12 +23,11 @@ const StackNavigator = () => {
           component={HomeScreen}
           options={{
             tabBarActiveTintColor: 'green',
-            headerShown: false,
             tabBarIcon: ({focused}) =>
               focused ? (
-                <Ionicons name="home-outline" size={30} color="green" />
+                <Ionicons name="home-outline" size={24} color="green" />
               ) : (
-                <Ionicons name="home-outline" size={30} color="#989898" />
+                <Ionicons name="home-outline" size={24} color="#989898" />
               ),
           }}
         />
@@ -41,9 +40,9 @@ const StackNavigator = () => {
             headerShown: false,
             tabBarIcon: ({focused}) =>
               focused ? (
-                <AntDesign name="addusergroup" size={30} color="green" />
+                <AntDesign name="addusergroup" size={24} color="green" />
               ) : (
-                <AntDesign name="addusergroup" size={30} color="#989898" />
+                <AntDesign name="addusergroup" size={24} color="#989898" />
               ),
           }}
         />
@@ -56,9 +55,9 @@ const StackNavigator = () => {
             headerShown: false,
             tabBarIcon: ({focused}) =>
               focused ? (
-                <SimpleLineIcons name="book-open" size={30} color="green" />
+                <SimpleLineIcons name="book-open" size={24} color="green" />
               ) : (
-                <SimpleLineIcons name="book-open" size={30} color="#989898" />
+                <SimpleLineIcons name="book-open" size={24} color="#989898" />
               ),
           }}
         />
@@ -71,9 +70,9 @@ const StackNavigator = () => {
             headerShown: false,
             tabBarIcon: ({focused}) =>
               focused ? (
-                <Ionicons name="person-outline" size={30} color="green" />
+                <Ionicons name="person-outline" size={24} color="green" />
               ) : (
-                <Ionicons name="person-outline" size={30} color="#989898" />
+                <Ionicons name="person-outline" size={24} color="#989898" />
               ),
           }}
         />
