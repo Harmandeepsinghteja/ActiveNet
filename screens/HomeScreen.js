@@ -1,8 +1,16 @@
-import {StyleSheet, Text, ScrollView, View, Pressable} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  ScrollView,
+  View,
+  Pressable,
+  ImageBackground,
+} from 'react-native';
 import React, {useLayoutEffect} from 'react';
 import {Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 const HomeScreen = () => {
   const navigation = useNavigation();
   useLayoutEffect(() => {
@@ -44,6 +52,37 @@ const HomeScreen = () => {
       [],
     );
   });
+  const data = [
+    {
+      id: '10',
+      image:
+        'https://playov2.gumlet.io/v3_homescreen/marketing_journey/Tennis%20Spotlight.png',
+      text: 'Learn Tennis',
+      description: 'Know more',
+    },
+    {
+      id: '11',
+      image:
+        'https://playov2.gumlet.io/v3_homescreen/marketing_journey/playo_spotlight_08.png',
+      text: 'Up Your Game',
+      description: 'Find a coach',
+    },
+    {
+      id: '12',
+      image:
+        'https://playov2.gumlet.io/v3_homescreen/marketing_journey/playo_spotlight_03.png',
+      text: 'Hacks to win',
+      description: 'Yes, Please!',
+    },
+    {
+      id: '13',
+      image:
+        'https://playov2.gumlet.io/v3_homescreen/marketing_journey/playo_spotlight_02.png',
+      text: 'Spotify Playolist',
+      description: 'Show more',
+    },
+  ];
+
   return (
     <ScrollView style={{flex: 1, backgroundColor: '#F8F8f8'}}>
       <View
@@ -124,7 +163,7 @@ const HomeScreen = () => {
         <Text style={{marginTop: 4, color: 'gray'}}>
           You have no Games Today
         </Text>
-        <Pressable style={{marginTop:10,marginBottom:5, leftMargin:10}}>
+        <Pressable style={{marginTop: 10, marginBottom: 5, leftMargin: 10}}>
           <Text
             style={{
               fontSize: 15,
@@ -134,6 +173,163 @@ const HomeScreen = () => {
             View My Calendar
           </Text>
         </Pressable>
+      </View>
+
+      <View
+        style={{
+          padding: 13,
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: 20,
+        }}>
+        <Pressable style={{flex: 1}}>
+          <View style={{borderRadius: 10}}>
+            <Image
+              style={{
+                width: 180,
+                height: 120,
+
+                borderRadius: 10,
+              }}
+              source={{
+                uri: 'https://images.pexels.com/photos/262524/pexels-photo-262524.jpeg?auto=compress&cs=tinysrgb&w=800',
+              }}
+            />
+          </View>
+          <Pressable
+            style={{
+              backgroundColor: 'white',
+              padding: 12,
+              width: 180,
+              borderRadius: 10,
+            }}>
+            <View style>
+              <Text style={{fontSize: 15, fontWeight: '500'}}>Play</Text>
+              <Text style={{fontSize: 15, color: 'gray', marginTop: 7}}>
+                Find players and join their activities
+              </Text>
+            </View>
+          </Pressable>
+        </Pressable>
+        <Pressable style={{flex: 1}}>
+          <View style={{borderRadius: 10}}>
+            <Image
+              style={{
+                width: 180,
+                height: 120,
+
+                borderRadius: 10,
+              }}
+              source={{
+                uri: 'https://images.pexels.com/photos/3660204/pexels-photo-3660204.jpeg?auto=compress&cs=tinysrgb&w=800',
+              }}
+            />
+          </View>
+          <Pressable
+            style={{
+              backgroundColor: 'white',
+              padding: 12,
+              width: 180,
+              borderRadius: 10,
+            }}>
+            <View style>
+              <Text style={{fontSize: 15, fontWeight: '500'}}>Book</Text>
+              <Text style={{fontSize: 15, color: 'gray', marginTop: 7}}>
+                Book your slots in venue nearby
+              </Text>
+            </View>
+          </Pressable>
+        </Pressable>
+      </View>
+      <View style={{padding: 13}}>
+        <View
+          style={{
+            padding: 10,
+            backgroundColor: 'white',
+            borderRadius: 10,
+            flexDirection: 'row',
+            gap: 10,
+          }}>
+          <View
+            style={{
+              width: 50,
+              height: 50,
+              borderRadius: 25,
+              backgroundColor: '#29AB87',
+              padding: 10,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <AntDesign name="addusergroup" size={24} color="green" />
+          </View>
+          <View>
+            <Text style={{fontWeight: 'bold'}}>Groups</Text>
+            <Text style={{marginTop: 10, color: 'gray'}}>
+              Connect, Compete and Discuss
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View style={{padding: 13}}>
+        <View
+          style={{
+            padding: 10,
+            backgroundColor: 'white',
+            borderRadius: 10,
+            flexDirection: 'row',
+            gap: 10,
+          }}>
+          <View
+            style={{
+              width: 50,
+              height: 50,
+              borderRadius: 25,
+              backgroundColor: 'yellow',
+              padding: 10,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Ionicons name="tennisball-outline" size={24} color="black" />
+          </View>
+          <View>
+            <Text style={{fontWeight: 'bold'}}>Game Time Activities</Text>
+            <Text style={{marginTop: 10, color: 'gray'}}>
+              355 ActiveNet Hosted Games
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View style={{padding: 13}}>
+        <View style={{padding: 10, backgroundColor: 'white', borderRadius: 10}}>
+          <Text style={{fontSize: 15, fontWeight: '500'}}>SpotLight</Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            {data.map((item, index) => (
+              <ImageBackground
+                imageStyle={{borderRadius: 10}}
+                style={{
+                  width: 220,
+                  height: 280,
+                  resizeMode: 'contain',
+                  marginRight: 10,
+                  marginLeft: 15,
+                }}
+                source={{uri: item?.image}}></ImageBackground>
+            ))}
+          </ScrollView>
+        </View>
+      </View>
+      <View>
+        <View style={{marginLeft:"auto",marginRight:"auto",marginTop:20}}>
+          <Image
+            style={{width: 120, height: 70, resizeMode: 'contain'}}
+            source={{
+              uri: 'https://playo-website.gumlet.io/playo-website-v2/logos-icons/new-logo-playo.png?q=50',
+            }}
+          />
+        </View>
+        <Text style={{textAlign: 'center', color: 'gray'}}>
+            Your Sports Community app
+        </Text>
       </View>
     </ScrollView>
   );
