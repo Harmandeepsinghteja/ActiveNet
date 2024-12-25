@@ -34,7 +34,7 @@ const StackNavigator = () => {
 
         <Tab.Screen
           name="Play"
-          component={BookScreen}
+          component={PlayScreen}
           options={{
             tabBarActiveTintColor: 'green',
             headerShown: false,
@@ -49,7 +49,7 @@ const StackNavigator = () => {
 
         <Tab.Screen
           name="Book"
-          component={PlayScreen}
+          component={BookScreen}
           options={{
             tabBarActiveTintColor: 'green',
             headerShown: false,
@@ -95,7 +95,7 @@ const StackNavigator = () => {
   }
   return (
     <NavigationContainer>
-        <MainStack />
+      <MainStack />
     </NavigationContainer>
   );
 };

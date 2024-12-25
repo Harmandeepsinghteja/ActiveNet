@@ -42,7 +42,7 @@ const HomeScreen = () => {
               <Image
                 style={{width: 30, height: 30, borderRadius: 15}}
                 source={{
-                  uri: 'https://cdn-icons-png.flaticon.com/128/785/785116.png',
+                  uri: 'https://a.storyblok.com/f/191576/1200x800/215e59568f/round_profil_picture_after_.webp',
                 }}
               />
             </Pressable>
