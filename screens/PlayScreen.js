@@ -2,7 +2,6 @@ import {
   StyleSheet,
   Text,
   View,
-  SafeAreaView,
   Image,
   Pressable,
   ScrollView,
@@ -10,6 +9,8 @@ import {
 import {React, useState} from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {SafeAreaView} from 'react-native-safe-area-context';
+
 
 const PlayScreen = () => {
   const [option, setOptions] = useState('My Sports');
