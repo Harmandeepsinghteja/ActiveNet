@@ -130,6 +130,26 @@ const PlayScreen = () => {
           </ScrollView>
         </View>
       </View>
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: 10,
+          backgroundColor: 'white',
+        }}>
+        <Pressable>
+          <Text style={{fontWeight: 'bold'}}>Create Game</Text>
+        </Pressable>
+        <View style={{flexDirection: 'row', gap: 10, alignItems: 'center'}}>
+          <Pressable>
+            <Text style={{fontWeight: 'bold'}}>Filter</Text>
+          </Pressable>
+          <Pressable>
+            <Text style={{fontWeight: 'bold'}}>Sort</Text>
+          </Pressable>
+        </View>
+      </View>
     </SafeAreaView>
   );
 };
@@ -143,7 +163,7 @@ const styles = StyleSheet.create({
   },
   mySportsContainerPressable: {
     paddingHorizontal: 10,
-    paddingVertical:6 ,
+    paddingVertical: 6,
     borderColor: 'white',
     marginRight: 10,
     borderRadius: 8,
@@ -151,9 +171,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  sportHeadingText:{
+  sportHeadingText: {
     color: 'white',
     fontWeight: '600',
     fontSize: 15,
-  }
+  },
 });
