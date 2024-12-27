@@ -14,7 +14,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import VenueCard from '../components/VenueCard';
 const BookScreen = () => {
 
-    const venues = [
+    const data = [
       {
         id: '0',
         name: "DDSA - St.Joseph's Boys' High School (European)",
@@ -22,7 +22,7 @@ const BookScreen = () => {
         newImage:
           'https://images.pexels.com/photos/3660204/pexels-photo-3660204.jpeg?auto=compress&cs=tinysrgb&w=800',
         image:
-          'https://playo.gumlet.io/DDSASTJOSEPHSBOYSHIGHSCHOOLEUROPEANS20220919091705834667/DDSAStJosephsBoysHighSchoolEuropeans1666166846682.jpg?mode=crop&crop=smart&h=200&width=450&q=40&format=webp',
+          'https://playo.gumlet.io/PANCHAJANYABADMINTONFITNESSACADEMY/panchajanyabadmintonfitnessacademy1597334767773.jpeg?mode=crop&crop=smart&h=200&width=450&q=40&format=webp',
         location:
           'No. 27, Museum Rd, Shanthala Nagar, Ashok Nagar, Bengaluru, Karnataka',
         rating: 3.6,
@@ -245,7 +245,14 @@ const BookScreen = () => {
         <Ionicons name="search" size={24} color="gray" />
       </View>
 
-      <Pressable style={{flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', gap:10, padding: 13}}>
+      <Pressable
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-around',
+          alignItems: 'center',
+          gap: 10,
+          padding: 13,
+        }}>
         <View
           style={{
             padding: 10,
@@ -274,13 +281,14 @@ const BookScreen = () => {
           <Text>Offers</Text>
         </View>
       </Pressable>
-        
-      <FlatList data={venues}  renderItem={(item) => <VenueCard item={item}  />}
-      contentContainerStyle={{paddingBottom: 20}} 
-      showsHorizontalScrollIndicator={false}
-      />
 
-      
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        data={data}
+        // data={venues}
+        renderItem={({item}) => <VenueCard item={item} />}
+        contentContainerStyle={{paddingBottom: 20}}
+      />
     </SafeAreaView>
   );
 };
