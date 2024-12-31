@@ -87,7 +87,7 @@ const StackNavigator = () => {
       </Tab.Navigator>
     );
   }
-  const authStack = () => {
+  const AuthStack = () => {
     return (
       <Stack.Navigator>
         <Stack.Screen
@@ -146,7 +146,7 @@ const StackNavigator = () => {
   }
   return (
     <NavigationContainer>
-      <authStack />
+      <AuthStack />
     </NavigationContainer>
   );
 };
