@@ -11,10 +11,14 @@ import React from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
+import {saveRegistrationProgress} from '../registrationUtils';
 const PasswordScreen = () => {
   const [password, setPassword] = React.useState('');
   const navigation = useNavigation();
   const handleNext = () => {
+    if (password.traim !== '') {
+      saveRegistrationProgress('Password', {password});
+    }
     navigation.navigate('Name');
   };
   return (
