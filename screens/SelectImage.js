@@ -11,6 +11,10 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
+import {
+  getRegistrationProgress,
+  saveRegistrationProgress,
+} from '../registrationUtils';
 
 const SelectImage = () => {
   const navigation = useNavigation();
@@ -33,18 +37,18 @@ const SelectImage = () => {
       image: 'https://cdn-icons-png.flaticon.com/128/3079/3079652.png',
     },
   ];
-  // useEffect(() => {
-  //   getRegistrationProgress('Image').then(progressData => {
-  //     if (progressData) {
-  //       setImage(progressData.image || '');
-  //     }
-  //   });
-  // }, []);
+  useEffect(() => {
+    getRegistrationProgress('Image').then(progressData => {
+      if (progressData) {
+        setImage(progressData.image || '');
+      }
+    });
+  }, []);
 
   const saveImage = () => {
-    // if (image.trim() !== '') {
-    //   saveRegistrationProgress('Image', {image});
-    // }
+    if (image.trim() !== '') {
+      saveRegistrationProgress('Image', {image});
+    }
     navigation.navigate('PreFinal');
   };
   return (
