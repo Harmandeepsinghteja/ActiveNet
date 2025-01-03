@@ -1,15 +1,34 @@
 import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
+import {getRegistrationProgress, saveRegistrationProgress} from '../registrationUtils';
+import { get } from 'core-js/core/dict';
 
 const NameScreen = () => {
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
   const navigation = useNavigation();
 
+
+
+
+  useEffect(() => {
+    getRegistrationProgress('Name').then(progressData => {
+      if (progressData) {
+        setFirstName(progressData.firstName || '');
+        setLastName(progressData.lastName || '');
+      }
+    });
+  }, []);
+  
+
+
   const saveName = () => {
+    if (firstName.traim !== '') {
+      saveRegistrationProgress('Name', {firstName, lastName});
+    }
     navigation.navigate('Image');
   };
   return (
