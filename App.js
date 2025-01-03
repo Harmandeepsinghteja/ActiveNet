@@ -6,7 +6,6 @@
  */
 
 import React from 'react';
-
 import {
   SafeAreaView,
   ScrollView,
@@ -27,6 +26,8 @@ import {
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import StackNavigator from './navigation/StackNavigator';
+import {AuthProvider} from './AuthContext';
+import {ModalPortal} from 'react-native-modals';
 
 function Section({children, title}) {
   const isDarkMode = useColorScheme() === 'dark';
@@ -61,7 +62,12 @@ function App() {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  return <StackNavigator />;
+  return (
+    <AuthProvider>
+      <StackNavigator />
+      <ModalPortal />
+    </AuthProvider>
+  );
 }
 
 const styles = StyleSheet.create({
