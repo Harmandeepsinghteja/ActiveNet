@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useContext} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/HomeScreen';
@@ -18,11 +18,14 @@ import PasswordScreen from '../screens/PasswordScreen';
 import NameScreen from '../screens/NameScreen';
 import SelectImage from '../screens/SelectImage';
 import PreFinalScreen from '../screens/PreFinalScreen';
+import {AuthContext} from '../AuthContext';
+import CreateActivity from '../screens/CreateActivity';
+import TagVenueScreen from '../screens/TagVenueScreen';
 
 const StackNavigator = () => {
   const Stack = createNativeStackNavigator();
   const Tab = createBottomTabNavigator();
-
+  const {token} = useContext(AuthContext);
   function BottomTabs() {
     return (
       <Tab.Navigator>
@@ -141,12 +144,22 @@ const StackNavigator = () => {
           component={VenueInfoScreen}
           options={{headerShown: false}}
         />
+        <Stack.Screen
+          name="Create"
+          component={CreateActivity}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="TagVenue"
+          component={TagVenueScreen}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
     );
   }
   return (
     <NavigationContainer>
-      <AuthStack />
+      {token === null || token === '' ? <AuthStack /> : <MainStack />}
     </NavigationContainer>
   );
 };
