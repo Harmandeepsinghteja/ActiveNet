@@ -1,73 +1,76 @@
 import {Pressable, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useContext, useState} from 'react';
-// import axios from 'axios';
-// import {AuthContext} from '../AuthContext';
-// import {getRegistrationProgress} from '../registrationUtils';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
+import {AuthContext} from '../AuthContext';
+import {getRegistrationProgress} from '../registrationUtils';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 
 const PreFinalScreen = () => {
-  // const {token, setToken} = useContext(AuthContext);
+  const {token, setToken} = useContext(AuthContext);
   const [userData, setUserData] = useState();
   const navigation = useNavigation();
-  // useEffect(() => {
-  //   if (token) {
-  //     navigation.replace('MainStack', {screen: 'Main'});
-  //   }
-  // }, [token]);
-  // useEffect(() => {
-  //   getAllUserData();
-  // }, []);
-  // const getAllUserData = async () => {
-  //   try {
-  //     const screens = ['Register', 'Password', 'Name', 'Image'];
+  useEffect(() => {
+    if (token) {
+      navigation.replace('MainStack', {screen: 'Main'});
+    }
+  }, [token, navigation]);
+  useEffect(() => {
+    getAllUserData();
+  }, []);
+  const getAllUserData = async () => {
+    try {
+      const screens = ['Register', 'Password', 'Name', 'Image'];
 
-  //     let userData = {};
+      let userData = {};
 
-  //     for (const screenName of screens) {
-  //       const screenData = await getRegistrationProgress(screenName);
-  //       if (screenData) {
-  //         userData = {...userData, ...screenData};
-  //       }
-  //     }
+      for (const screenName of screens) {
+        const screenData = await getRegistrationProgress(screenName);
+        if (screenData) {
+          userData = {...userData, ...screenData};
+        }
+      }
 
-  //     setUserData(userData);
-  //   } catch (error) {
-  //     console.log('Error', error);
-  //   }
-  // };
-  // const clearAllScreenData = async () => {
-  //   try {
-  //     const screens = ['Register', 'Password', 'Name', 'Image'];
+      setUserData(userData);
+    } catch (error) {
+      console.log('Error', error);
+    }
+  };
+  const clearAllScreenData = async () => {
+    try {
+      const screens = ['Register', 'Password', 'Name', 'Image'];
 
-  //     for (const screenName of screens) {
-  //       const key = `registration_progress_${screenName}`;
-  //       await AsyncStorage.removeItem(key);
-  //     }
+      for (const screenName of screens) {
+        const key = `registration_progress_${screenName}`;
+        await AsyncStorage.removeItem(key);
+      }
 
-  //     console.log('All screen data cleared!');
-  //   } catch (error) {
-  //     console.log('Error', error);
-  //   }
-  // };
+      console.log('All screen data cleared!');
+    } catch (error) {
+      console.log('Error', error);
+    }
+  };
 
   console.log(userData);
-  // const registerUser = async () => {
-  //   try {
-  //     const response = await axios
-  //       .post('http://localhost:8000/register', userData)
-  //       .then(response => {
-  //         console.log(response);
-  //         const token = response.data.token;
-  //         AsyncStorage.setItem('token', token);
-  //         setToken(token);
-  //       });
+  const registerUser = async () => {
+    try {
+      const response = await axios
+        .post('http://10.0.2.2:8000/register', userData)
+        .then(response => {
+          console.log(response);
+          const token = response.data.token;
+          console.log('token', token);
+          AsyncStorage.setItem('token', token);
+          setToken(token);
+        });
 
-  //     clearAllScreenData();
-  //   } catch (error) {
-  //     console.log('Error', error);
-  //   }
-  // };
+      clearAllScreenData();
+    } catch (error) {
+      console.log('Error while Registering', error);
+    }
+  };
+  console.log('token', token);
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
       <View style={{marginTop: 80}}>
@@ -93,7 +96,7 @@ const PreFinalScreen = () => {
       </View>
 
       <Pressable
-        // onPress={registerUser}
+        onPress={registerUser}
         style={{backgroundColor: '#03C03C', padding: 15, marginTop: 'auto'}}>
         <Text
           style={{
