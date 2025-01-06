@@ -93,9 +93,9 @@ const CreateActivity = () => {
         admin,
         totalPlayers: noOfPlayers,
       };
-
+      console.log('Game Data:', gameData);
       const response = await axios.post(
-        'http://localhost:8000/creategame',
+        'http://10.0.2.2:8000/creategame',
         gameData,
       );
       console.log('Game created:', response.data);

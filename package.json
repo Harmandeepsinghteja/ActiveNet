@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^2.1.0",
+    "@react-native-community/datetimepicker": "^8.2.0",
     "@react-native-vector-icons/common": "^11.0.0",
     "@react-native-vector-icons/evil-icons": "^1.10.1",
     "@react-native-vector-icons/fontawesome6": "^6.7.1",
@@ -27,6 +28,7 @@
     "react-native-config": "^1.5.3",
     "react-native-linear-gradient": "^2.8.3",
     "react-native-maps": "^1.20.1",
+    "react-native-modal-datetime-picker": "^18.0.0",
     "react-native-modals": "^0.22.3",
     "react-native-safe-area-context": "^5.0.0",
     "react-native-screens": "^4.4.0",

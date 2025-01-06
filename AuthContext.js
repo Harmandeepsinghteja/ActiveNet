@@ -1,13 +1,16 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {createContext, useEffect, useState} from 'react';
-import jwtDecode from 'jwt-decode';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {jwtDecode} from 'jwt-decode';
+import 'core-js/stable/atob';
+
 const AuthContext = createContext();
 
 const AuthProvider = ({children}) => {
   const [token, setToken] = useState('');
   const [userId, setUserId] = useState('');
-  const [upcomingGames, setUpcomingGames] = useState([]);
   const [isLoading, setIsLoading] = useState('');
+
+  const [upcomingGames, setUpcomingGames] = useState([]);
 
   const isLoggedIn = async () => {
     try {
@@ -24,15 +27,16 @@ const AuthProvider = ({children}) => {
     const fetchUser = async () => {
       const token = await AsyncStorage.getItem('token');
       const decodedToken = jwtDecode(token);
-      const userId = decodedToken.id;
+      const userId = decodedToken.userId;
       setUserId(userId);
     };
+
     fetchUser();
   }, []);
-
   useEffect(() => {
     isLoggedIn();
-  }, []);
+  }, [token]);
+
   return (
     <AuthContext.Provider
       value={{
