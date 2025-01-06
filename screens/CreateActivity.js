@@ -30,11 +30,13 @@ const CreateActivity = () => {
   const [selected, setSelected] = useState(['Public']);
   const [modalVisible, setModalVisible] = useState(false);
   const route = useRoute();
-  const [sport, setSport] = useState('');
-  const [area, setArea] = useState('');
-  const [date, setDate] = useState('');
-  const [time, setTime] = useState('');
+  const [sport, setSport] = useState(route.params?.sport || '');
+  const [area, setArea] = useState(route.params?.area || '');
+  const [date, setDate] = useState(route.params?.date || '');
+  const [time, setTime] = useState(route.params?.time || '');
   const [noOfPlayers, setnoOfPlayers] = useState(0);
+  const [taggedVenue, setTaggedVenue] = useState(null);
+  const [timeInterval, setTimeInterval] = useState('');
   const {userId} = useContext(AuthContext);
   console.log('userID', userId);
   const generateDates = () => {
@@ -71,8 +73,6 @@ const CreateActivity = () => {
 
   console.log('Route Params ', route.params);
 
-  const [timeInterval, setTimeInterval] = useState('');
-
   useEffect(() => {
     if (route.params?.timeInterval) {
       setTimeInterval(route.params.timeInterval);
@@ -106,7 +106,10 @@ const CreateActivity = () => {
             onPress: () => console.log('Cancel Pressed'),
             style: 'cancel',
           },
-          {text: 'OK', onPress: () => navigation.goBack()},
+          {
+            text: 'OK',
+            onPress: () => navigation.navigate('Main', {screen: 'PLAY'}),
+          },
         ]);
 
         setSport('');
@@ -120,8 +123,6 @@ const CreateActivity = () => {
       // Handle error
     }
   };
-
-  const [taggedVenue, setTaggedVenue] = useState(null);
 
   useEffect(() => {
     if (route.params?.taggedVenue) {
@@ -179,7 +180,15 @@ const CreateActivity = () => {
             />
 
             <Pressable
-              onPress={() => navigation.navigate('TagVenue')}
+              onPress={() =>
+                navigation.navigate('TagVenue', {
+                  sport,
+                  date,
+                  noOfPlayers,
+                  timeInterval,
+                  taggedVenue,
+                })
+              }
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',
@@ -232,7 +241,15 @@ const CreateActivity = () => {
             />
 
             <Pressable
-              onPress={() => navigation.navigate('Time')}
+              onPress={() =>
+                navigation.navigate('Time', {
+                  sport,
+                  date,
+                  noOfPlayers,
+                  timeInterval,
+                  taggedVenue,
+                })
+              }
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',

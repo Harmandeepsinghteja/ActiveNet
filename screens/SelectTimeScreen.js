@@ -4,9 +4,10 @@ import {useNavigation} from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
-
+import {useRoute} from '@react-navigation/native';
 const SelectTimeScreen = () => {
   const [time, setTime] = useState('');
+  const route = useRoute();
   const navigation = useNavigation();
   const times = [
     {
@@ -94,7 +95,13 @@ const SelectTimeScreen = () => {
       const formattedStartTime = formatTime(startTime);
       const formattedEndTime = formatTime(time);
       const timeInterval = `${formattedStartTime} - ${formattedEndTime}`;
-      navigation.navigate('Create', {timeInterval});
+      navigation.navigate('Create', {
+        timeInterval,
+        sport: route.params?.sport || '',
+        taggedVenue: route.params?.taggedVenue || '',
+        date: route.params?.date || '',
+        noOfPlayers: route.params?.noOfPlayers || 0,
+      });
     }
   };
 
