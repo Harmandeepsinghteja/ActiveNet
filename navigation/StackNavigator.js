@@ -26,7 +26,7 @@ import SelectImage from '../screens/SelectImage';
 import PreFinalScreen from '../screens/PreFinalScreen';
 import {AuthContext} from '../AuthContext';
 import SelectTimeScreen from '../screens/SelectTimeScreen';
-// import GameSetUpScreen from '../screens/GameSetUpScreen';
+import GameSetUpScreen from '../screens/GameSetUpScreen';
 // import ProfileDetailScreen from '../screens/ProfileDetailScreen';
 import PasswordScreen from '../screens/PasswordScreen';
 // import ManageRequests from '../screens/ManageRequests';
@@ -173,11 +173,11 @@ const StackNavigator = () => {
           component={SlotScreen}
           options={{headerShown: false}}
         /> */}
-        {/* <Stack.Screen
+        <Stack.Screen
           name="Game"
           component={GameSetUpScreen}
           options={{headerShown: false}}
-        /> */}
+        />
         <Stack.Screen name="Time" component={SelectTimeScreen} />
         {/* <Stack.Screen name="ProfileDetail" component={ProfileDetailScreen} /> */}
         {/* <Stack.Screen
