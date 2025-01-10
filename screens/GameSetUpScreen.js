@@ -2,7 +2,6 @@ import {
   StyleSheet,
   Text,
   View,
-  SafeAreaView,
   ScrollView,
   Image,
   Pressable,
@@ -19,6 +18,7 @@ import {SlideAnimation} from 'react-native-modals';
 import {BottomModal} from 'react-native-modals';
 import {ModalContent} from 'react-native-modals';
 import {AuthContext} from '../AuthContext';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import axios from 'axios';
 
 const GameSetUpScreen = () => {
@@ -153,8 +153,8 @@ const GameSetUpScreen = () => {
 
   return (
     <>
-      <SafeAreaView>
-        <ScrollView>
+      <SafeAreaView style={{flex: 1}}>
+        <ScrollView style={{flex: 1}}>
           <View
             style={{
               padding: 10,
