@@ -659,7 +659,7 @@ const GameSetUpScreen = () => {
           style={{
             backgroundColor: '#07bc0c',
             marginTop: 'auto',
-            marginBottom: 30,
+            marginBottom: 20,
             padding: 15,
             marginHorizontal: 10,
             borderRadius: 4,
@@ -679,7 +679,7 @@ const GameSetUpScreen = () => {
           style={{
             backgroundColor: 'red',
             marginTop: 'auto',
-            marginBottom: 30,
+            marginBottom: 20,
             padding: 15,
             marginHorizontal: 10,
             borderRadius: 4,
@@ -700,14 +700,14 @@ const GameSetUpScreen = () => {
             marginTop: 'auto',
             flexDirection: 'row',
             alignItems: 'center',
-            paddingVertical: 12,
+            paddingVertical: 10,
             backgroundColor: '#E8E8E8',
           }}>
           <Pressable
             style={{
               backgroundColor: 'white',
               marginTop: 'auto',
-              marginBottom: 30,
+              marginBottom: 20,
               padding: 15,
               marginHorizontal: 10,
               borderRadius: 4,
@@ -727,7 +727,7 @@ const GameSetUpScreen = () => {
             style={{
               backgroundColor: '#07bc0c',
               marginTop: 'auto',
-              marginBottom: 30,
+              marginBottom: 20,
               padding: 15,
               marginHorizontal: 10,
               borderRadius: 4,
