@@ -26,11 +26,13 @@ const PlayScreen = () => {
   const {userId} = useContext(AuthContext);
   useEffect(() => {
     fetchGames();
-  }, []);
+  }, [userId]);
 
   const fetchGames = async () => {
     try {
-      const response = await axios.get('http://10.0.2.2:8000/games');
+      const response = await axios.get(
+        'http://10.0.2.2:8000/games?userId=${userId}',
+      );
       setGames(response.data);
     } catch (error) {
       console.log(error);
