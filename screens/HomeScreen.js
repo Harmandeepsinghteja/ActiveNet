@@ -6,13 +6,18 @@ import {
   Pressable,
   ImageBackground,
 } from 'react-native';
-import React, {useLayoutEffect} from 'react';
+import React, {useLayoutEffect, useContext, useState, useEffect} from 'react';
 import {Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {AuthContext} from '../AuthContext';
+import axios from 'axios';
 const HomeScreen = () => {
   const navigation = useNavigation();
+  const {user, setUser} = useState({});
+  const {userId, setToken, setUserId} = useContext(AuthContext);
   useLayoutEffect(() => {
     navigation.setOptions(
       {
@@ -38,18 +43,18 @@ const HomeScreen = () => {
             }}>
             <Ionicons name="chatbox-outline" size={24} color="black" />
             <Ionicons name="notifications-outline" size={24} color="black" />
-            <Pressable>
+            <Pressable onPress={clearAuthToken}>
               <Image
                 style={{width: 30, height: 30, borderRadius: 15}}
                 source={{
-                  uri: 'https://a.storyblok.com/f/191576/1200x800/215e59568f/round_profil_picture_after_.webp',
+                  uri: user?.user?.image,
                 }}
               />
             </Pressable>
           </View>
         ),
       },
-      [],
+      [user],
     );
   });
   const data = [
@@ -82,6 +87,29 @@ const HomeScreen = () => {
       description: 'Show more',
     },
   ];
+
+  // To create new User for testing
+  const clearAuthToken = async () => {
+    try {
+      await AsyncStorage.removeItem('token');
+      setToken('');
+      setUserId('');
+      navigation.navigate('Start');
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    if (userId) {
+      fetchUser();
+    }
+  }, [userId]);
+
+  const fetchUser = async () => {
+    const response = await axios.get(`http://10.0.2.2:8000/user/${userId}`);
+    setUser(response.date);
+  };
 
   return (
     <ScrollView style={{flex: 1, backgroundColor: '#F8F8f8'}}>
@@ -163,7 +191,16 @@ const HomeScreen = () => {
         <Text style={{marginTop: 4, color: 'gray'}}>
           You have no Games Today
         </Text>
-        <Pressable style={{marginTop: 10, marginBottom: 5, leftMargin: 10}}>
+        <Pressable
+          onPress={() =>
+            navigation.navigate('PLAY', {initialOption: 'Calender'})
+          }
+          style={{
+            marginTop: 10,
+            marginBottom: 5,
+            marginRight: 'auto',
+            marginLeft: 'auto',
+          }}>
           <Text
             style={{
               fontSize: 15,
@@ -319,7 +356,7 @@ const HomeScreen = () => {
         </View>
       </View>
       <View>
-        <View style={{marginLeft:"auto",marginRight:"auto",marginTop:20}}>
+        <View style={{marginLeft: 'auto', marginRight: 'auto', marginTop: 20}}>
           <Image
             style={{width: 120, height: 70, resizeMode: 'contain'}}
             source={{
@@ -328,7 +365,7 @@ const HomeScreen = () => {
           />
         </View>
         <Text style={{textAlign: 'center', color: 'gray'}}>
-            Your Sports Community app
+          Your Sports Community app
         </Text>
       </View>
     </ScrollView>

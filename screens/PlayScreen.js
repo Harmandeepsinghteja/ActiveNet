@@ -18,12 +18,22 @@ import {AuthContext} from '../AuthContext';
 import {useContext} from 'react';
 import {set} from 'core-js/core/dict';
 import UpComingGame from '../components/UpComingGame';
+import {useRoute} from '@react-navigation/native';
 const PlayScreen = () => {
-  const [option, setOptions] = useState('My Sports');
+  const route = useRoute();
   const [sports, setSports] = useState(['Badminton']);
   const [games, setGames] = useState([]);
   const [upcomingGames, setUpcomingGames] = useState([]);
   const {userId} = useContext(AuthContext);
+  const [option, setOptions] = useState(initialOption);
+  const initialOption = route?.params?.initialOption || 'My Sports';
+
+  useEffect(() => {
+    if (initialOption) {
+      setOptions(initialOption);
+    }
+  }, [initialOption]);
+
   useEffect(() => {
     fetchGames();
   }, [userId]);
