@@ -5,16 +5,67 @@ import {
   Image,
   Pressable,
   ScrollView,
+  FlatList,
 } from 'react-native';
-import {React, useState} from 'react';
+import {React, useEffect, useState} from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
-
+import axios from 'axios';
+import Game from '../components/Game';
+import {AuthContext} from '../AuthContext';
+import {useContext} from 'react';
+import {set} from 'core-js/core/dict';
+import UpComingGame from '../components/UpComingGame';
+import {useRoute} from '@react-navigation/native';
 const PlayScreen = () => {
-  const [option, setOptions] = useState('My Sports');
+  const route = useRoute();
   const [sports, setSports] = useState(['Badminton']);
+  const [games, setGames] = useState([]);
+  const [upcomingGames, setUpcomingGames] = useState([]);
+  const {userId} = useContext(AuthContext);
+  const [option, setOptions] = useState(initialOption);
+  const initialOption = route?.params?.initialOption || 'My Sports';
+
+  useEffect(() => {
+    if (initialOption) {
+      setOptions(initialOption);
+    }
+  }, [initialOption]);
+
+  useEffect(() => {
+    fetchGames();
+  }, [userId]);
+
+  const fetchGames = async () => {
+    try {
+      const response = await axios.get(
+        'http://10.0.2.2:8000/games?userId=${userId}',
+      );
+      setGames(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    if (userId) {
+      fetchUpcomingGames();
+    }
+  }, [userId]);
+
+  const fetchUpcomingGames = async () => {
+    try {
+      const response = await axios.get(
+        `http://10.0.2.2:8000/upcoming?userId=${userId}`,
+      );
+      setUpcomingGames(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  console.log('upcomingGames', upcomingGames);
+
   const navigation = useNavigation();
   return (
     <SafeAreaView>
@@ -152,6 +203,22 @@ const PlayScreen = () => {
           </Pressable>
         </View>
       </View>
+      {option == 'My Sports' && (
+        <FlatList
+          data={games}
+          renderItem={({item}) => <Game item={item} />}
+          keyExtractor={item => item._id}
+          contentContainerStyle={{paddingBottom: 20}}
+        />
+      )}
+      {option == 'Calender' && (
+        <FlatList
+          data={upcomingGames}
+          renderItem={({item}) => <UpComingGame item={item} />}
+          keyExtractor={item => item._id}
+          contentContainerStyle={{paddingBottom: 20}}
+        />
+      )}
     </SafeAreaView>
   );
 };

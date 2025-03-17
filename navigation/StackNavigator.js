@@ -17,7 +17,7 @@ import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import VenueInfoScreen from '../screens/VenueInfoScreen';
-// import SlotScreen from '../screens/SlotScreen';
+import SlotScreen from '../screens/SlotScreen';
 import CreateActivity from '../screens/CreateActivity';
 import StartScreen from '../screens/StartScreen';
 // import OtpScreen from '../screens/OtpScreen';
@@ -26,13 +26,13 @@ import SelectImage from '../screens/SelectImage';
 import PreFinalScreen from '../screens/PreFinalScreen';
 import {AuthContext} from '../AuthContext';
 import SelectTimeScreen from '../screens/SelectTimeScreen';
-// import GameSetUpScreen from '../screens/GameSetUpScreen';
+import GameSetUpScreen from '../screens/GameSetUpScreen';
 // import ProfileDetailScreen from '../screens/ProfileDetailScreen';
 import PasswordScreen from '../screens/PasswordScreen';
-// import ManageRequests from '../screens/ManageRequests';
-// import PlayersScreen from '../screens/PlayersScreen';
+import ManageRequests from '../screens/ManageRequestScreen';
+import PlayersScreen from '../screens/PlayersScreen';
 import TagVenueScreen from '../screens/TagVenueScreen';
-// import PaymentScreen from '../screens/PaymentScreen';
+import PaymentScreen from '../screens/PaymentScreen';
 // import SplashScreen from '../screens/SplashScreen';
 
 const StackNavigator = () => {
@@ -168,39 +168,39 @@ const StackNavigator = () => {
           component={CreateActivity}
           options={{headerShown: false}}
         />
-        {/* <Stack.Screen
+        <Stack.Screen
           name="Slot"
           component={SlotScreen}
           options={{headerShown: false}}
-        /> */}
-        {/* <Stack.Screen
+        />
+        <Stack.Screen
           name="Game"
           component={GameSetUpScreen}
           options={{headerShown: false}}
-        /> */}
+        />
         <Stack.Screen name="Time" component={SelectTimeScreen} />
         {/* <Stack.Screen name="ProfileDetail" component={ProfileDetailScreen} /> */}
-        {/* <Stack.Screen
+        <Stack.Screen
           name="Manage"
           component={ManageRequests}
           options={{headerShown: false}}
-        /> */}
-        {/* <Stack.Screen
+        />
+        <Stack.Screen
           name="Players"
           component={PlayersScreen}
           options={{headerShown: false}}
-        /> */}
+        />
         <Stack.Screen
           name="TagVenue"
           component={TagVenueScreen}
           options={{headerShown: false}}
         />
-        {/* <Stack.Screen
+        <Stack.Screen
           name="Payment"
           component={PaymentScreen}
           options={{headerShown: false}}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           name="Splash"
           component={SplashScreen}
           options={{headerShown: false}}
